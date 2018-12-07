@@ -1,0 +1,25 @@
+ select * 
+ from
+        (select cast(substr(devid, 37, 10) as TIMESTAMP) period, 
+                     substr(devid, 1, 36) deviceId, 
+                     avg(temp) avgTemperature, 
+                     max(temp) maxTemperature 
+                from iot_metric_hive         
+                group by period, deviceId 
+        ) temp_metric
+   where period = '2018-12-06'
+   order by period
+
+
+ select substr(devid, 1,36) deviceId, 
+        count(devid) data_points 
+    from iot_metric_hive 
+    group by deviceId
+    order by data_points desc;
+
+
+ select substr(devid, 1, 36) deviceId,             
+        max(temp) maxTemperature 
+    from iot_metric_hive 
+    group by devid 
+    order by maxTemperature desc 

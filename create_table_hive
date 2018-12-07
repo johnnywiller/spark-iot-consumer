@@ -1,0 +1,13 @@
+CREATE EXTERNAL TABLE iot_metric_hive (
+      devid string,
+      lat double,
+      long double,
+      time string,
+      temp int  
+)
+STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" =
+        ":key,deviceInfo:lat#b,deviceInfo:long#b,deviceInfo:time,deviceInfo:temp#b"
+    )
+TBLPROPERTIES("hbase.table.name" = "iot_metric");
