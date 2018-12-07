@@ -18,10 +18,8 @@ import org.apache.spark.streaming.{Milliseconds, StreamingContext}
 import play.api.libs.json.Json
 import play.api.libs.json.Json.reads
 
-
 case class Location(latitude: Double, longitude: Double)
 case class Data(deviceId: String, var temperature: Int = 0, var location: Location = null, var time: Instant = Instant.now())
-case class DataParameters(maxTemperature: Int, minTemperature: Int, deltaTemperature: Int, maxLatitude: Double, minLatitude: Double, maxLongitude: Double, minLongitude: Double, deltaLocation: Double)
 
 object DataConsumer {
 
